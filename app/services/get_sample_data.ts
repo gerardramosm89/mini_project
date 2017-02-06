@@ -3,15 +3,14 @@ import { Observable } from 'rxjs/Rx';
 import { Http, Response } from '@angular/http';
 import 'rxjs/Rx';
 @Injectable()
-//Just calling in DataService for fun :)
+//Just calling it DataService for fun :)
 export class DataService {
   data: any;
-  API_URL = "https://reqres.in/api/unknown";
+  API_URL = "https://reqres.in/api/unknown"; //using test dummy API, none were provided so I assumed I could use this
   constructor(private http: Http){
 
   }
   ngOnInit(){
-    //going with template strings for ease
   }
 
   getData(): Observable<any>{
