@@ -11,7 +11,7 @@ import { DataService } from './services/get_sample_data';
     <div class="jumbotron text-center">
       <h1>hello!</h1>
     </div>
-    <search-bar></search-bar>
+    <search-bar [data]="data"></search-bar>
 <table class="table table-bordered">
     <thead>
       <tr>
