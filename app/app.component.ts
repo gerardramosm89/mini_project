@@ -45,11 +45,12 @@ export class AppComponent {
   ngOnInit(){
     this.dataService.getData().subscribe((data) => {
       this.data = data.data;
-      console.log(this.data);
     });
   }
 	sortYear(){
 		this.data.sort((a,b) => {
+      console.log("a.year is: " + a.year);
+      console.log("b.year is: " + b.year);
 			return parseFloat(a.year) + parseFloat(b.year);
 		});
 	}
@@ -58,12 +59,28 @@ export class AppComponent {
       return parseFloat(a.id) + parseFloat(b.id);
     });
 	}
-  sortThis(){
-    this.newArray = [];
-    this.counter = 0;
-    this.ascending = !this.ascending;
-    this.data.map((data) => {
-      this.unsortedArray.push(data);
+  sortPantoneValue(){
+    // sort by name
+    this.data.sort((a,b) => {
+      var valueA = a.pantone_value.toUpperCase(); // ignore upper and lowercase
+      var valueB = b.pantone_value.toUpperCase(); // ignore upper and lowercase
+      if (valueA < valueB) {
+        if (valueA > valueB) {
+          return -1;
+        }
+        if (valueA < valueB) {
+          return 1;
+        }
+    } else if(valueA > valueB){
+        if (valueA < valueB) {
+          return -1;
+        }
+        if (valueA > valueB) {
+          return 1;
+        }
+    }
+      // names must be equal
+      return 0;
     });
   }
 }

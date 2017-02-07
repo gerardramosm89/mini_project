@@ -68,7 +68,7 @@ export class SearchComponent{
       //decided to go with indexOf, because if we get back -1 it means we did not find an instance of that word
       if (this.n != -1){
         this.foundArray.push(this.data[i]);
-        console.log(this.foundArray);
+        console.log("pantone_value pushed data into array");
         this.foundArraybool = true;
       }
     };
@@ -77,8 +77,8 @@ export class SearchComponent{
       this.n = this.currentName.indexOf(this.searchTerm);
       //decided to go with indexOf, because if we get back -1 it means we did not find an instance of that word
       if (this.n != -1){
+        console.log("name function pushed data into array");
         this.foundArray.push(this.data[i]);
-        console.log(this.foundArray);
         this.foundArraybool = true;
       }
     };
@@ -88,7 +88,7 @@ export class SearchComponent{
       //decided to go with indexOf, because if we get back -1 it means we did not find an instance of that word
       if (this.n != -1){
         this.foundArray.push(this.data[i]);
-        console.log(this.foundArray);
+        console.log("year function pushed data into the array");
         this.foundArraybool = true;
       }
     };
