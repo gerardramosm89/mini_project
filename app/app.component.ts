@@ -15,10 +15,10 @@ import { DataService } from './services/get_sample_data';
 <table class="table table-bordered">
     <thead>
       <tr>
-        <th>Id</th>
+        <th class="cursorhover" (click)="sortId()">Id</th>
         <th>Name</th>
-        <th class="cursorhover" (click)="sortThis()">Pantone Value</th>
-        <th>Year</th>
+        <th class="cursorhover" (click)="sortPantoneValue()">Pantone Value</th>
+        <th class="cursorhover" (click)="sortYear()">Year</th>
       </tr>
     </thead>
 <tbody *ngFor="let single of data">
@@ -38,22 +38,32 @@ export class AppComponent {
   counter: number = 0;
   ascending: boolean = true;
   unsortedArray: any;
+	testArray: any;
   constructor(private dataService: DataService){
 
   }
   ngOnInit(){
     this.dataService.getData().subscribe((data) => {
       this.data = data.data;
-      //console.log(this.data);
+      console.log(this.data);
     });
   }
-
+	sortYear(){
+		this.data.sort((a,b) => {
+			return parseFloat(a.year) + parseFloat(b.year);
+		});
+	}
+	sortId(){
+    this.data.sort((a,b) => {
+      return parseFloat(a.id) + parseFloat(b.id);
+    });
+	}
   sortThis(){
     this.newArray = [];
     this.counter = 0;
     this.ascending = !this.ascending;
     this.data.map((data) => {
-      console.log(data);
+      this.unsortedArray.push(data);
     });
   }
 }
