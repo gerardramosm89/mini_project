@@ -51,9 +51,16 @@ export class SearchComponent{
       'searchTerm': new FormControl('', Validators.required)
     });
   }
-  searchClick(){
-    this.foundArray = [];
 
+  searchClick(){
+    //Had to add the folowing code below to properly remove the table from the DOM when nothing is in the search bar
+    this.myForm.valueChanges.subscribe(data => {
+      console.log(data.searchTerm);
+      if (data.searchTerm == null){
+        this.foundArraybool = false;
+      }
+    });
+    this.foundArray = [];
     this.searchTerm = this.myForm.value.searchTerm;
     if (this.foundArray = []){
       this.foundArraybool = false;
