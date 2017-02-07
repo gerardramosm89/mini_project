@@ -12,25 +12,27 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
       </span>
     </form>
   </div>
-  <div *ngIf="foundArray">
-  <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th>Id</th>
-          <th>Name</th>
-          <th>Pantone Value</th>
-          <th>Year</th>
-        </tr>
-      </thead>
-  <tbody *ngFor="let single of foundArray">
-      <tr>
-        <td>{{single.id}}</td>
-        <td>{{single.name}}</td>
-        <td>{{single.pantone_value}}</td>
-        <td>{{single.year}}</td>
-      </tr>
-  </tbody>
-  </table>
+  <div *ngIf="foundArraybool">
+    <div *ngIf="myForm.valid">
+      <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Name</th>
+              <th>Pantone Value</th>
+              <th>Year</th>
+            </tr>
+          </thead>
+      <tbody *ngFor="let single of foundArray">
+          <tr>
+            <td>{{single.id}}</td>
+            <td>{{single.name}}</td>
+            <td>{{single.pantone_value}}</td>
+            <td>{{single.year}}</td>
+          </tr>
+      </tbody>
+      </table>
+    </div>
   </div>
   `
 })
@@ -42,7 +44,8 @@ export class SearchComponent{
   foundArray: any = null;
   searchTerm: any;
   n: number;
-  currentName: String;
+  currentName: any;
+  foundArraybool: boolean;
   constructor(){
     this.myForm = new FormGroup({
       'searchTerm': new FormControl('', Validators.required)
@@ -50,7 +53,21 @@ export class SearchComponent{
   }
   searchClick(){
     this.foundArray = [];
+
     this.searchTerm = this.myForm.value.searchTerm;
+    if (this.foundArray = []){
+      this.foundArraybool = false;
+    }
+    for (let i = 0;i < this.data.length;i++){
+      this.currentName = this.data[i].pantone_value;
+      this.n = this.currentName.indexOf(this.searchTerm);
+      //decided to go with indexOf, because if we get back -1 it means we did not find an instance of that word
+      if (this.n != -1){
+        this.foundArray.push(this.data[i]);
+        console.log(this.foundArray);
+        this.foundArraybool = true;
+      }
+    };
     for (let i = 0;i < this.data.length;i++){
       this.currentName = this.data[i].name;
       this.n = this.currentName.indexOf(this.searchTerm);
@@ -58,6 +75,17 @@ export class SearchComponent{
       if (this.n != -1){
         this.foundArray.push(this.data[i]);
         console.log(this.foundArray);
+        this.foundArraybool = true;
+      }
+    };
+    for (let i = 0;i < this.data.length;i++){
+      this.currentName = JSON.stringify(this.data[i].year); //Had to stringify this to match the term below
+      this.n = this.currentName.indexOf(this.searchTerm);
+      //decided to go with indexOf, because if we get back -1 it means we did not find an instance of that word
+      if (this.n != -1){
+        this.foundArray.push(this.data[i]);
+        console.log(this.foundArray);
+        this.foundArraybool = true;
       }
     };
   }
