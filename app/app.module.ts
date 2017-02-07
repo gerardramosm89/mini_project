@@ -12,8 +12,9 @@ import { SearchComponent } from './components/search_table';
     HttpModule,
     ReactiveFormsModule
   ], //added Http Module
-  declarations: [ AppComponent,
-  SearchComponent ],
+  declarations: [
+    AppComponent,
+    SearchComponent ],
   bootstrap: [ AppComponent ],
   providers: [DataService] //adding our DataService as a provider so we can fetch data
 })
