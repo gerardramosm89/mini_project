@@ -11,12 +11,39 @@ import { DataService } from './services/get_sample_data';
     <div class="jumbotron text-center">
       <h1>hello!</h1>
     </div>
+    <div class="col-xs-8 col-xs-offset-2">
+    <p class="lead">Hey there Mango Technologies team!</p>
+    <p>This mini project implements a good amount of angular 2 such as:</p>
+    <table class="table table-striped" style="border-style:solid">
+      <tbody>
+        <tr>
+          <td>Data Driven Forms with validation</td>
+        </tr>
+        <tr>
+          <td>Angular2 HTTP with Observables</td>
+        </tr>
+        <tr>
+          <td>Conditional rendering with common directives such as ngIf/ngFor</td>
+        </tr>
+        <tr>
+          <td>Dependency Injection with services</td>
+        </tr>
+        <tr>
+          <td>Parent to child component data sharing</td>
+        </tr>
+        <tr>
+          <td>Event driven data binding</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>Try typing in a search term, a table will show with the results of columns that contain that query.  If you back-space the table will clear until you make another search</p>
+    </div>
     <search-bar [data]="data"></search-bar>
 <table class="table table-bordered">
     <thead>
       <tr>
         <th class="cursorhover" (click)="sortId()">Id</th>
-        <th>Name</th>
+        <th class="cursorhover" (click)="sortName()">Name</th>
         <th class="cursorhover" (click)="sortPantoneValue()">Pantone Value</th>
         <th class="cursorhover" (click)="sortYear()">Year</th>
       </tr>
@@ -64,6 +91,30 @@ export class AppComponent {
     this.data.sort((a,b) => {
       var valueA = a.pantone_value.toUpperCase(); // ignore upper and lowercase
       var valueB = b.pantone_value.toUpperCase(); // ignore upper and lowercase
+      if (valueA < valueB) {
+        if (valueA > valueB) {
+          return -1;
+        }
+        if (valueA < valueB) {
+          return 1;
+        }
+    } else if(valueA > valueB){
+        if (valueA < valueB) {
+          return -1;
+        }
+        if (valueA > valueB) {
+          return 1;
+        }
+    }
+      // names must be equal
+      return 0;
+    });
+  }
+  sortName(){
+    // sort by name
+    this.data.sort((a,b) => {
+      var valueA = a.name.toUpperCase(); // ignore upper and lowercase
+      var valueB = b.name.toUpperCase(); // ignore upper and lowercase
       if (valueA < valueB) {
         if (valueA > valueB) {
           return -1;
