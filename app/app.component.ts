@@ -36,9 +36,14 @@ import { DataService } from './services/get_sample_data';
         </tr>
       </tbody>
     </table>
-    <p>Try typing in a search term, a table will show with the results of columns that contain that query.  If you back-space the table will clear until you make another search</p>
+    <h5>Try typing in a search term, a table will show with the results of columns that contain that query.  If you back-space the table will clear until you make another search</h5>
     </div>
     <search-bar [data]="data"></search-bar>
+<div class="container">
+  <div class="col-xs-8 col-xs-offset-2 text-center">
+  <h5>Click the headers of the table and they will be re-ordered in descending and ascending orders</h5>
+  </div>
+</div>
 <table class="table table-bordered">
     <thead>
       <tr>
